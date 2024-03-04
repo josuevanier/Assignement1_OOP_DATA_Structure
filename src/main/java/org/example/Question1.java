@@ -6,10 +6,12 @@ import java.util.Scanner;
 public class Question1 {
     public static void main(String[] args) {
 
-        int[] array = getInputsArrays();
+        int[] array = {1,2,2,2,2,4,4,5,6};
+        Arrays.sort(array);
 
-        System.out.println(Arrays.toString(addElement(array, 3)));
 
+
+        findRepeatedElements(array);
     }
 
 
@@ -33,7 +35,7 @@ public class Question1 {
 
             arrays[count] = sc.nextInt();
             count++;
-            index++;
+            index++ ;
         }
         return arrays;
     }
@@ -46,5 +48,26 @@ public class Question1 {
                 addedElements[i] =  arrays[i];
         }
         return addedElements;
+    }
+    public static void findRepeatedElements(int[] arrays){
+        Arrays.sort(arrays);
+        int count = 0;
+        int currentElement;
+        int index = 0;
+
+        for(int i = index; i <= arrays.length - 1; i++){
+
+            for(int j = i; j < arrays.length; j++) {
+                if (arrays[i] == arrays[j]) {
+                    index++;
+                    count++;
+                }
+            }
+                System.out.print("The element " + arrays[i] + " is repeated " + count + " time");
+            i = index;
+                count = 0;
+            System.out.println(" ");
+
+            }
     }
 }
