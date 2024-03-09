@@ -17,4 +17,11 @@ public class RectangleAdapter{
     public void printAreaOfSquare(){
         rectangle.printAreaOfRectangle();
     }
+
+    public static void main(String[] args) {
+        RectangleAdapter adapter = new RectangleAdapter(new TennisCourt());
+        adapter.setSide(4);
+
+        adapter.printAreaOfSquare();
+    }
 }

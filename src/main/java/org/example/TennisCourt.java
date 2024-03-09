@@ -5,6 +5,9 @@ public class TennisCourt implements Rectangle {
     public int length;
     public int width;
 
+    public TennisCourt() {
+    }
+
     public TennisCourt(int length, int width) {
         this.length = length;
         this.width = width;
