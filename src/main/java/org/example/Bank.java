@@ -80,9 +80,17 @@ public class Bank {
             for (Bank bank : banks) {
                 if ((bank.getRevenue() >= 600000 &&
                         bank.getRevenue() <= 700000)) {
-                    System.out.println( "Bank " + bank.getName() + " from " + bank.getBranch() + " . Make a revenue between 600K and 700k");
+                    System.out.println("Bank " + bank.getName() + " from " + bank.getBranch() + " . Make a revenue between 600K and 700k");
                 }
             }
         }
+    }
+        public static void countBank(ArrayList<Bank> banks){
+            int countTD = 0;
+            int countRbc = 0;
+            for(Bank bank : banks){
+                if(bank.getName().equalsIgnoreCase("Td")) countTD++;
+                else if (bank.getName().equalsIgnoreCase("RBC")) countRbc++;
+            }
     }
 }
