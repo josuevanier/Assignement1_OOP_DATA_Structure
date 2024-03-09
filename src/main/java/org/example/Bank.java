@@ -53,6 +53,7 @@ public class Bank {
     public void setAddress(String address) {
         this.address = address;
     }
+
     public void setNoOfCustomers(int noOfCustomers) {
         this.noOfCustomers = noOfCustomers;
     }
@@ -60,25 +61,26 @@ public class Bank {
     public static void main(String[] args) {
         ArrayList<Bank> banks = new ArrayList<Bank>();
 
-        banks.add(new Bank("Td","St-Michel",740000,"5043",230));
-        banks.add(new Bank("Td","CDG",603000,"5043",205));
-        banks.add(new Bank("Td","StLaurent",903000,"5043",210));
-        banks.add(new Bank("Td","StMichel",604000,"5043",230));
-        banks.add(new Bank("Td","StMichel",50300,"5043",250));
+        banks.add(new Bank("Td", "St-Michel", 740000, "5043", 230));
+        banks.add(new Bank("Td", "CDG", 603000, "5043", 205));
+        banks.add(new Bank("Td", "StLaurent", 903000, "5043", 210));
+        banks.add(new Bank("Td", "StMichel", 604000, "5043", 230));
+        banks.add(new Bank("Td", "StMichel", 50300, "5043", 250));
 
-        findBankOfParticularBranch(banks,"Rbc");
+        findBankOfParticularBranch(banks, "Rbc");
 
-        banks.add(new Bank("RBC","StMichel",500000,"5043",245));
-        banks.add(new Bank("RBC","StLaurent",700000,"5043",240));
-        banks.add(new Bank("RBC","STL",605000,"5043",200));
-        banks.add(new Bank("RBC","SLaurent",56000,"5043",236));
-        banks.add(new Bank("RBC","CDG",500000,"5043",215));
+        banks.add(new Bank("RBC", "StMichel", 500000, "5043", 245));
+        banks.add(new Bank("RBC", "StLaurent", 700000, "5043", 240));
+        banks.add(new Bank("RBC", "STL", 605000, "5043", 200));
+        banks.add(new Bank("RBC", "SLaurent", 56000, "5043", 236));
+        banks.add(new Bank("RBC", "CDG", 500000, "5043", 215));
 
         displayBankThatMakeMoreRevenue(banks);
+        displayNumberOfCustomerOfTheBanks(banks);
 
     }
 
-    public static void findBankOfParticularBranch( ArrayList<Bank> banks, String bankName) {
+    public static void findBankOfParticularBranch(ArrayList<Bank> banks, String bankName) {
         if (bankName.equalsIgnoreCase("Td") || bankName.equalsIgnoreCase("Rbc")) {
             for (Bank bank : banks) {
                 if ((bank.getRevenue() >= 600000 &&
@@ -88,28 +90,44 @@ public class Bank {
             }
         }
     }
-        public static void countBank(ArrayList<Bank> banks){
-            int countTD = 0;
-            int countRbc = 0;
-            for(Bank bank : banks){
-                if(bank.getName().equalsIgnoreCase("Td")) countTD++;
-                else if (bank.getName().equalsIgnoreCase("RBC")) countRbc++;
-            }
+
+    public static void countBank(ArrayList<Bank> banks) {
+        int countTD = 0;
+        int countRbc = 0;
+        for (Bank bank : banks) {
+            if (bank.getName().equalsIgnoreCase("Td")) countTD++;
+            else if (bank.getName().equalsIgnoreCase("RBC")) countRbc++;
+        }
     }
 
-    public static void displayBankThatMakeMoreRevenue(ArrayList<Bank> banks){
+    public static void displayBankThatMakeMoreRevenue(ArrayList<Bank> banks) {
         int sumRBC = 0;
         int sumTD = 0;
 
-        for(Bank bank: banks){
-            if(bank.getName().equalsIgnoreCase("RBc")){
+        for (Bank bank : banks) {
+            if (bank.getName().equalsIgnoreCase("RBc")) {
                 sumRBC += bank.getRevenue();
-            } else{
+            } else {
                 sumTD += bank.getRevenue();
             }
         }
-        if(sumRBC > sumTD) System.out.println("Bank RBC makes more revenue for a total of " + sumRBC +"$");
-        else if (sumTD > sumRBC)System.out.println("Bank TD makes more revenue for a total of " + sumTD +"$");
+        if (sumRBC > sumTD) System.out.println("Bank RBC makes more revenue for a total of " + sumRBC + "$");
+        else if (sumTD > sumRBC) System.out.println("Bank TD makes more revenue for a total of " + sumTD + "$");
         else System.out.println("They make the same amount of revenue " + sumTD + "$");
+    }
+
+    public static void displayNumberOfCustomerOfTheBanks(ArrayList<Bank> banks) {
+        int sumCustomerRbc = 0;
+        int sumCustomerTD = 0;
+        for (Bank bank : banks) {
+            if (bank.getName().equalsIgnoreCase("RBc")) {
+                sumCustomerRbc += bank.getNoOfCustomers();
+            } else {
+                sumCustomerTD += bank.getNoOfCustomers();
+            }
+        }
+        System.out.println("Bank RBC  have a total of " + sumCustomerRbc );
+        System.out.println("Bank TD have a total of " + sumCustomerTD);
+
     }
 }
