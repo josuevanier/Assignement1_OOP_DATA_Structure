@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Question2 {
@@ -9,21 +10,33 @@ public class Question2 {
 
         ArrayList<String> stringsOfUser = new ArrayList<>();
 
-        System.out.println("How many elements you want to enter: ");
-        int n = sc.nextInt();
+        try {
+            int count = 0;
+            System.out.println("How many elements you want to enter: ");
+            if (!sc.hasNext()) {
+                throw new InputMismatchException("Illegal argument Exception");
+            } else {
+                int n = sc.nextInt();
 
-        for(int i = 0; i < n; i++){
-            System.out.print(" Your " + i + "String: ");
+                for (int i = 0; i < n; i++) {
+                    System.out.print(" Your " + i + "String: ");
+                    if (!sc.hasNext()) throw new InputMismatchException("Must be a string");
+                    else {
+                        String name = sc.next();
 
-            String name = sc.next();
-
-                if (!(stringsOfUser.contains(name))) {
-                    stringsOfUser.add(name);
+                        if (!(stringsOfUser.contains(name))) {
+                            stringsOfUser.add(name);
+                            count++;
+                        }
+                    }
+                }
+                for (String string : stringsOfUser) {
+                    if (stringsOfUser.size() > 1 && stringsOfUser.size() < count) System.out.print(string + ", ");
+                    else System.out.print(string + " ");
+                }
             }
-        }
-        for(String string : stringsOfUser){
-            if(stringsOfUser.size() > 1) System.out.print(string + ", ");
-            else System.out.print(string + " ");
+        }catch (InputMismatchException e){
+            System.out.println(e.getMessage());
         }
     }
 }
