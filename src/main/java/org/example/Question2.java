@@ -31,7 +31,7 @@ public class Question2 {
                     }
                 }
                 for (String string : stringsOfUser) {
-                    if (stringsOfUser.size() > 1 && stringsOfUser.size() < count) System.out.print(string + ", ");
+                    if (stringsOfUser.size() > 1 && (stringsOfUser.size() <= count || stringsOfUser.size() <= n)) System.out.print(string + " | ");
                     else System.out.print(string + " ");
                 }
             }
