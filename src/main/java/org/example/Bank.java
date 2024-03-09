@@ -1,5 +1,6 @@
 package org.example;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Bank {
@@ -73,6 +74,8 @@ public class Bank {
         banks.add(new Bank("RBC","SLaurent",56000,"5043",236));
         banks.add(new Bank("RBC","CDG",500000,"5043",215));
 
+        displayBankThatMakeMoreRevenue(banks);
+
     }
 
     public static void findBankOfParticularBranch( ArrayList<Bank> banks, String bankName) {
@@ -92,5 +95,21 @@ public class Bank {
                 if(bank.getName().equalsIgnoreCase("Td")) countTD++;
                 else if (bank.getName().equalsIgnoreCase("RBC")) countRbc++;
             }
+    }
+
+    public static void displayBankThatMakeMoreRevenue(ArrayList<Bank> banks){
+        int sumRBC = 0;
+        int sumTD = 0;
+
+        for(Bank bank: banks){
+            if(bank.getName().equalsIgnoreCase("RBc")){
+                sumRBC += bank.getRevenue();
+            } else{
+                sumTD += bank.getRevenue();
+            }
+        }
+        if(sumRBC > sumTD) System.out.println("Bank RBC makes more revenue for a total of " + sumRBC +"$");
+        else if (sumTD > sumRBC)System.out.println("Bank TD makes more revenue for a total of " + sumTD +"$");
+        else System.out.println("They make the same amount of revenue " + sumTD + "$");
     }
 }
