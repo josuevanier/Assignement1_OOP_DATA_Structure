@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Contains the tasks of question 2
+ * @author  Joseph Josue Forestal
+ */
 public class Question2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
         ArrayList<String> stringsOfUser = new ArrayList<>();
-
         try {
             int count = 0;
             System.out.println("How many elements you want to enter: ");
