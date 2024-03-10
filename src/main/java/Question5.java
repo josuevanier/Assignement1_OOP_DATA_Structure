@@ -1,16 +1,19 @@
 import java.util.Scanner;
 
+/**
+ * Contains the tasks of question 5
+ * @author  Joseph Josue Forestal
+ */
 public class Question5 {
     static boolean isNotExit = true;
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-
         String blockOfDay = """
                 * 1 : Monday
                 * 2: Tuesday
                 * 3: Wednesday
                 * 4: Saturday
-                * 5: Friday
+                * 5: Friday nights
                 * 6 : Saturday
                 * 7 : Sunday
                 """;
@@ -33,7 +36,7 @@ public class Question5 {
                 String answer = sc.next();
                 if(answer.equalsIgnoreCase("Y")) {
                     count++;
-                    System.out.println("What is the age of the person " + count);
+                    System.out.println("What is the age of the person " + count+ "?");
                     if(!sc.hasNextInt()) System.out.println("The age must be an integer");
                   totalPrice += getPrice(day, personNa(sc.nextInt()));
                 }else if (answer.equalsIgnoreCase("N")){
@@ -44,6 +47,12 @@ public class Question5 {
         }
         System.out.println("Total price is " + totalPrice + "$");
     }
+
+    /***
+     * Case based on the day of the weeks
+     * @param day take int day of the week
+     * @return the enum day of the week
+     */
     public static dayOfTheWeek dayOfTheWeek(int day){
         return switch (day){
             case 1 -> dayOfTheWeek.Monday;
@@ -56,6 +65,13 @@ public class Question5 {
             default -> null;
         };
     }
+
+    /***
+     * Get the price based on the person is age
+     * @param day the day of the week
+     * @param person the person object
+     * @return an integer that represent the money
+     */
     public static int getPrice(dayOfTheWeek day, Person person) {
         if (day == dayOfTheWeek.Monday || day == dayOfTheWeek.Tuesday
                 || day == dayOfTheWeek.Wednesday || day == dayOfTheWeek.Thursday) {
@@ -70,14 +86,28 @@ public class Question5 {
             else return 35;
         }
     }
+
+    /**
+     * method that return a new person
+     * @param age take the age since the constructor take the age
+     * @return a peron with an age
+     */
         public static Person personNa(int age){
             return new Person(age);
         }
 
+    /**
+     * Enum of the day of the week
+     */
     public enum dayOfTheWeek{
         Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
     }
 }
+
+/**
+ * Contains the info a person (only its age)
+ * @author Jospeh Josue Forestal
+ */
 class Person{
     int age;
     public Person(int age) {
@@ -87,9 +117,13 @@ class Person{
         return age;
     }
 
+    /**
+     * Check if person is adult
+     * @param person take a person object
+     * @return a boolean value
+     */
     public  boolean  isAdult(Person person){
         if(person.getAge() >= 18) return true;
         else return false;
     }
 }
-
