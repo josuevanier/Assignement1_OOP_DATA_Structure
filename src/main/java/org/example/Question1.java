@@ -8,15 +8,15 @@ public class Question1 {
     static Scanner sc = new Scanner(System.in);
     static boolean isExit = false;
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
         String msgMenu = """
-         * You must have an array in order to have these features        
+         * You must have an array in order to have these features
+         * If you want to display the array length enter: 0        
          * If you want to add an element to an array enter: 1
          * If you want to sort an array enter: 2
          * If you want to remove an array enter: 3
          * If you want to find all the repeated elements(elements are automatically sorted) 
-         and the one that is repeated the most enter : 4
+           and the one that is repeated the most enter : 4
          * If you want to display display enter: 5
          * If you want to see what the number you will enter does, enter: 6
          * If you want to exit enter: 7
@@ -42,8 +42,12 @@ public class Question1 {
         }
     }
 
+    /***
+     * This method take the user inputs
+     * @return  an array after the specific inputs
+     * @throws InputMismatchException may throw an exception if the wrong parameter are given
+     */
     public static  int[] getInputsArrays() throws InputMismatchException{
-
         System.out.println("Hi ! How many elements you would like to enter : ");
 
         if(!sc.hasNextInt()){
@@ -64,6 +68,13 @@ public class Question1 {
         return arrays;
     }
 
+    /***
+     * This method add an element to an array
+     * @param arrays take an initial array to add  to
+     * @param num take an integre to add to the new array
+     * @return a new array
+     * @throws InputMismatchException may throw an input mismatch exception if the wrong parameter are given
+     */
     public static int[] addElement(int[] arrays, int num) throws InputMismatchException{
         int[] addedElements = new int[arrays.length + 1];
         for (int i = 0; i < arrays.length; i++) {
@@ -72,6 +83,12 @@ public class Question1 {
         }
         return addedElements;
     }
+
+    /***
+     * This method find all the repeated element of an array  and the one that is repeated the most
+     * @param arrays take an array to find the repeated element
+     * @throws InputMismatchException may throw this exception if the wrong parameter is given
+     */
     public static void findRepeatedElements(int[] arrays) throws InputMismatchException{
         int max = Integer.MIN_VALUE;
         Arrays.sort(arrays);
@@ -105,6 +122,13 @@ public class Question1 {
 
     }
 
+    /**
+     * This method remove an element of an array based on a speciifc index
+     * @param arrays take an initial array to remove from
+     * @param index the index at which we want to remove
+     * @return the new array after remove the element
+     * it also throws an array index out of bound exception
+     */
     public static  int[] removeElement(int[] arrays, int index){
         if(  index < 0 || index >= arrays.length){
                 throw new ArrayIndexOutOfBoundsException("Invalid Index | " + " You can only put " +
@@ -125,14 +149,34 @@ public class Question1 {
         }
         return removedArray;
     }
+
+    /**
+     * This method display an array
+     * @param arrays take an array to display the value
+     */
     public static void display(int[] arrays){
         System.out.println(Arrays.toString(arrays));
     }
+
+    /***
+     * This method sort the array
+     * @param array take an array to sort it
+     */
     public static void sortArray(int[] array){
         Arrays.sort(array);
     }
+
+    /***
+     * This method is the menu that allow the user to interact with the methods
+     * @param num specific method base on the num
+     * @param arr the array
+     * @return  the array after transformation
+     * @throws InputMismatchException if input is not correct
+     */
     public static int[] menu(int num,int[] arr) throws InputMismatchException{
         switch (num) {
+                case 0:
+                    arrayLength(arr);
                 case 1:
                     System.out.println("Integer value you want to add ?");
                     if(!sc.hasNextInt()){ throw new InputMismatchException("Must be an integer");}
@@ -173,11 +217,22 @@ public class Question1 {
             }
             return arr;
     }
+
+    /**
+     * This method is a boolean that state exit as true
+     * @return true
+     */
     public static boolean wantExit(){
         return true;
     }
+
+    /***
+     * This method print the case
+     * @param num the specific case
+     */
     public static void printCase(int num){
         switch (num){
+            case 0 -> System.out.println("Print the length of the array");
             case 1-> System.out.println("1 add an element");
             case 2 -> System.out.println("2 sort the array");
             case 3 -> System.out.println("3 remove an element");
@@ -187,5 +242,13 @@ public class Question1 {
             case 7 -> System.out.println("7 is to exit");
             default -> System.out.println(num + " do nothing");
         }
+    }
+
+    /***
+     * This method print the array length
+     * @param arrays take an array as a parameter
+     */
+    public static void arrayLength(int[] arrays){
+        System.out.println(arrays.length);
     }
 }
