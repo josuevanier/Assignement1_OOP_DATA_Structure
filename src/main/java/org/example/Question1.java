@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/***
+ * Contains the task of question 1
+ * @author  Joseph Josue Forestal
+ */
 public class Question1 {
     static Scanner sc = new Scanner(System.in);
     static boolean isExit = false;
