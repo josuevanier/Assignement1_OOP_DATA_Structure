@@ -25,8 +25,15 @@ public class Question2 {
                     if (!sc.hasNext()) throw new InputMismatchException("Must be a string");
                     else {
                         String name = sc.next();
-
-                        if (!(stringsOfUser.contains(name))) {
+                        boolean isExist = false;
+                        for(String string : stringsOfUser){
+                            if(string.equalsIgnoreCase(name)){
+                                isExist = true;
+                            }else {
+                                isExist  = false;
+                            }
+                        }
+                        if (!isExist) {
                             stringsOfUser.add(name);
                             count++;
                         }
