@@ -15,7 +15,8 @@ public class Question5 {
                 * 7 : Sunday
                 """;
 
-
+        System.out.println(blockOfDay);
+        int count = 1;
         boolean wantPerson = true;
         int totalPrice = 0;
         while(isNotExit) {
@@ -31,7 +32,8 @@ public class Question5 {
                 System.out.println("Do you want to add another person ?");
                 String answer = sc.next();
                 if(answer.equalsIgnoreCase("Y")) {
-                    System.out.println("What is the age of the person");
+                    count++;
+                    System.out.println("What is the age of the person " + count);
                     if(!sc.hasNextInt()) System.out.println("The age must be an integer");
                   totalPrice += getPrice(day, personNa(sc.nextInt()));
                 }else if (answer.equalsIgnoreCase("N")){
