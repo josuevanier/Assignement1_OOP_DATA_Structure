@@ -1,5 +1,8 @@
-public class Question5 {
+import java.util.Scanner;
 
+public class Question5 {
+    static boolean isNotExit = true;
+    static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
 
         String blockOfDay = """
@@ -12,11 +15,32 @@ public class Question5 {
                 * 7 : Sunday
                 """;
 
-        System.out.println("Enter which day of the week we are");
 
-        Person p1 = new Person(13);
+        boolean wantPerson = true;
+        int totalPrice = 0;
+        while(isNotExit) {
+            System.out.println("Enter one of the integer above for the day you want to chose: ");
+            if(!sc.hasNextInt()) System.out.println("Must be an Integer of the given day");
+            dayOfTheWeek day = dayOfTheWeek(sc.nextInt());
 
-        System.out.println(getPrice(dayOfTheWeek(5),p1));
+            System.out.println("How old is Person one ?: ");
+            if(!sc.hasNextInt()) System.out.println("The age must be a full number");
+            Person p1 = new Person(sc.nextInt());
+            totalPrice += getPrice(day,p1);
+            while (wantPerson) {
+                System.out.println("Do you want to add another person ?");
+                String answer = sc.next();
+                if(answer.equalsIgnoreCase("Y")) {
+                    System.out.println("What is the age of the person");
+                    if(!sc.hasNextInt()) System.out.println("The age must be an integer");
+                  totalPrice += getPrice(day, personNa(sc.nextInt()));
+                }else if (answer.equalsIgnoreCase("N")){
+                    wantPerson = false;
+                }
+            }
+            break;
+        }
+        System.out.println("Total price is " + totalPrice + "$");
     }
     public static dayOfTheWeek dayOfTheWeek(int day){
         return switch (day){
@@ -30,20 +54,24 @@ public class Question5 {
             default -> null;
         };
     }
-    public static int getPrice(dayOfTheWeek day, Person person){
-        if(day == dayOfTheWeek.Monday || day == dayOfTheWeek.Tuesday
-           || day == dayOfTheWeek.Wednesday || day == dayOfTheWeek.Thursday){
-            if (person.isAdult(person)){
+    public static int getPrice(dayOfTheWeek day, Person person) {
+        if (day == dayOfTheWeek.Monday || day == dayOfTheWeek.Tuesday
+                || day == dayOfTheWeek.Wednesday || day == dayOfTheWeek.Thursday) {
+            if (person.isAdult(person)) {
                 return 20;
-            }else return 15; 
+            } else return 15;
         } else if (day == dayOfTheWeek.Friday) {
-            if(!person.isAdult(person)) return 25;
+            if (!person.isAdult(person)) return 25;
             else return 30;
-        }else {
-            if(person.isAdult(person)) return 40;
+        } else {
+            if (person.isAdult(person)) return 40;
             else return 35;
         }
     }
+        public static Person personNa(int age){
+            return new Person(age);
+        }
+
     public enum dayOfTheWeek{
         Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
     }
